@@ -102,7 +102,7 @@ if "DATABASE_SECRET" in os.environ:
     db_url = os.environ.get("DATABASE_URL")
     DATABASES = {"default": dj_database_url.parse(db_url)}
 else:
-    DATABASES = {"default": dj_database_url.parse("sqlite:///db.sqlite3")}
+    DATABASES = {"default": dj_database_url.parse("sqlite:///mdb.sqlite3")}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
