@@ -90,7 +90,7 @@ def get_voyages(request) :
             )
         ).order_by('-coeff') """
 
-        voyages = VoyagePrevu.objects.all().exclude(voyage__voyage_correspondant__user__pk = request.user.pk)
+        voyages = VoyagePrevu.objects.all().exclude(user__pk = request.user.pk)
         voys = []
         for voy in voyages :
             voys.append({
