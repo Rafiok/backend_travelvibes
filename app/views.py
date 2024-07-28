@@ -68,6 +68,7 @@ def register_user(request) :
 @api_view(['POST', 'GET'])
 def get_voyages(request) :
     excepts = json.loads(request.data.get('excepts')) 
+    
     try :
         depart = json.loads(request.data.get('depart'))
         arrivee = json.loads(request.data.get('arrivee'))
@@ -89,7 +90,7 @@ def get_voyages(request) :
             )
         ).order_by('-coeff') """
 
-        voyages = VoyagePrevu.objects.all()
+        voyages = VoyagePrevu.objects.all().exclude(voyage__voyage_correspondant__user__pk = request.user.pk)
         voys = []
         for voy in voyages :
             voys.append({
@@ -264,3 +265,14 @@ def create_transaction(request) :
 @permission_classes([IsAuthenticated])
 def ping(request):
     return Response({'done': True})
+
+@api_view(['GET', 'HEAD'])
+@permission_classes([IsAuthenticated])
+def get_pubs(request) :
+    pubs = request.user.voyage_prevus.all().order_by('-created_at')
+
+    return Response({
+        'done' : True,
+        'result' : VoyageSerializer(pubs, many = True).data,
+        'other' : len(pubs)
+    })

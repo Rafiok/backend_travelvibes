@@ -15,5 +15,6 @@ urlpatterns = [
     path('charg_files/', charg_files),
     path('init_portefeuille/', init_portefeuille),
     path('create_transaction/', create_transaction),
-    path('ping/', ping)
+    path('ping/', ping),
+    path('get_pubs/', get_pubs)
 ]

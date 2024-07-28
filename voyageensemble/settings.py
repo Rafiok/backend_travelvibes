@@ -69,10 +69,10 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'voyageensemble.urls'
-
+""" 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
-
+ """
 AUTH_USER_MODEL = "app.User"
 
 TEMPLATES = [
