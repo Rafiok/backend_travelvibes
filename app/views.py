@@ -109,7 +109,7 @@ def get_voyages(request) :
         voyages = [vs['voy'] for vs in voys ]
     except Exception as e :
         print(e)
-        voyages = VoyagePrevu.objects.all().order_by('-created_at')
+        voyages = VoyagePrevu.objects.all().exclude(user__pk = request.user.pk).order_by('-created_at')
     total_count = len(voyages)
     
     return Response({
